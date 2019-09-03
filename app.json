@@ -1,0 +1,137 @@
+{
+  "id": "com.kaipule",
+  "version": "0.0.1",
+  "compatibility": ">=2.4.0",
+  "sdk": 2,
+  "brandColor": "#17a5e0",
+  "name": {
+    "en": "Kaipule Z-Wave"
+  },
+  "description": {
+    "en": "Adds support for Kaipule Z-Wave devices"
+  },
+  "category": [
+    "security"
+  ],
+  "permissions": [],
+  "images": {
+    "large": "/assets/images/large.png",
+    "small": "/assets/images/small.png"
+  },
+  "author": {
+    "name": "Martin P",
+    "email": "mapulu@t-online.de"
+  },
+  "drivers": [
+    {
+      "id": "door-sensor",
+      "name": {
+        "en": "Door/Window Sensor",
+		"de": "Tür-/Fensterkontakt"
+      },
+      "class": "sensor",
+      "capabilities": [
+        "measure_battery",
+        "alarm_battery",
+        "alarm_contact",
+        "alarm_tamper"
+      ],
+      "images": {
+        "large": "/drivers/door-sensor/assets/images/large.png",
+        "small": "/drivers/door-sensor/assets/images/small.png"
+      },
+      "settings": [
+        {
+          "id": "1",
+          "value": 255,
+          "label": {
+            "en": "Basic Set Level"
+          },
+          "hint": {
+            "en": "If there is any device under Association Group2, the door sensor will send “Basic Set = value” command to control that device when the door sensor is opened.",
+			"de": "Wenn es ein Gerät unter Assoziations Gruppe 2 gibt, sendet der Türsensor den Befehl “Basic Set = value” um dieses Gerät beim Öffnen des Türsensors zu steuern."
+          },
+          "zwave": {
+            "index": 1,
+            "size": 1
+          },
+          "attr": {
+            "min": 1,
+            "max": 100
+          },
+          "type": "number"
+        },
+        {
+          "id": "2",
+          "value": 20,
+          "label": {
+            "en": "Turn Off Light Time Configuration",
+			"de": "Schalte Licht aus nach Zeit Konfiguration"
+          },
+          "hint": {
+            "en": "If there is any device under Association Group 2, the door sensor will send “Basic Set = value” command to Group2, and send “Basic Set = 0x00” command to turn-off light after “t” seconds, Set value = “t”, means to send Basic Set command after “t” seconds.",
+			"de": "Wenn es ein Gerät unter Assoziations Gruppe 2 gibt, sendet der Türsensor den Befehl “Basic Set = value” an Gruppe 2 und den Befehl “Basic Set = 0x00” Kommando um das Licht nach auszuschalten nach Zeit “t” Sekunden, Set value = “t”, d.h. den Befehl Basic Set nach “t” Sekunden."
+          },
+          "zwave": {
+            "index": 2,
+            "size": 1
+          },
+          "attr": {
+            "min": 1,
+            "max": 120
+          },
+          "type": "number"
+        },
+        {
+          "id": "3",
+          "value": 12,
+          "label": {
+            "en": "Door Sensor Status Report",
+			"de": "Statusbericht Türsensor"
+          },
+          "hint": {
+            "en": "Under normal working status (without trigger), the door sensor will automatically send report to the Gateway about its current tamper & open/close status. Set value = t, means “t” hours,(“t”=0, means no status report)",
+			"de": "Im normalen Betriebszustand (ohne Auslöser) sendet der Türsensor automatisch einen Bericht an das Gateway über seinen aktuellen Manipulations- und Öffnungs-/Schließstatus. Sollwert = t, bedeutet “t” Stunden,(“t”=0, bedeutet keine Statusmeldung)"
+          },
+          "zwave": {
+            "index": 3,
+            "size": 1
+          },
+          "attr": {
+            "min": 0,
+            "max": 24
+          },
+          "type": "number"
+        }
+      ],
+      "zwave": {
+        "manufacturerId": 532,
+        "productTypeId": [
+          2
+        ],
+        "productId": [
+          1,
+		  55
+        ],
+		"learnmode": {
+			"instruction": {
+				"en": "Press the tamper switch 3 times within 1.5s",
+				"de": "Drücke den Manipulationsschalter 3 mal innerhalb von 3 Sekunden"
+			}
+		},
+        "zwaveAllianceProductId": 2027,
+        "associationGroups": [
+          1
+        ],
+        "associationGroupsOptions": {
+          "1": {
+            "hint": {
+              "en": "1.It will send “NOTIFICATION_REPORT” to the device in Group 1 when the door sensor is opened / closed, tamper switch is triggered / recovered.\r\n2.When in low battery status, door sensor will send “BATTERY_REPORT” to Group 1 device periodically.\r\n3.The door sensor will send “DEVICE_RESET_LOCALLY_NOTIFICATION” to Group1 device\r\nwhen the device recovers to factory settings.",
+			  "de": "1. es wird “NOTIFICATION_REPORT” an das Gerät in Gruppe 1 gesendet, wenn der Türsensor geöffnet / geschlossen wird, der Manipulationsschalter wird ausgelöst / wiederhergestellt.\r\n2. Wenn der Batteriestatus niedrig ist, sendet der Türsensor “BATTERY_REPORT” regelmäßig an das Gerät in Gruppe 1.\r\n3. Der Türsensor sendet “DEVICE_RESET_LOCALLY_NOTIFICATION” an das Gerät in Gruppe 1."
+            }
+          }
+        }
+      }
+    }
+  ]
+}
