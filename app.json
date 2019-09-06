@@ -7,6 +7,13 @@
   "name": {
     "en": "Kaipule Z-Wave"
   },
+   "contributing": {
+        "donate": {
+            "paypal": {
+                "username": "mapulu"
+            }
+        }
+    },
   "description": {
     "en": "Adds support for Kaipule Z-Wave devices"
   },
@@ -15,8 +22,8 @@
   ],
   "permissions": [],
   "images": {
-    "large": "/assets/images/large.png",
-    "small": "/assets/images/small.png"
+    "large": "/assets/images/large.jpg",
+    "small": "/assets/images/small.jpg"
   },
   "author": {
     "name": "Martin P",
